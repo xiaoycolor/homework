@@ -24,5 +24,10 @@ namespace LogDevelop
         {
             InitializeComponent();
         }
+
+        private void lstTexts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

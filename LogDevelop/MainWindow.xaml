@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LogDevelop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="文本分析软件" Height="350" Width="525">
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <Button Content="打开文件" />
+            <Button x:Name="button" Content="保存文件" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="75"/>
+
+        </ToolBar>
+        <ListBox x:Name="listBox" />
+    </DockPanel>
 </Window>
