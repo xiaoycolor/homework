@@ -6,20 +6,39 @@
         xmlns:local="clr-namespace:LogDevelop"
         mc:Ignorable="d"
         Title="文本分析软件" Height="350" Width="525">
+    <Window.Resources>
+        <RoutedCommand x:Key="LoadTargetText" />
+        <RoutedCommand x:Key="SaveFile" />
+        <RoutedCommand x:Key="CloseFile" />
+        <RoutedCommand x:Key="Help" />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource LoadTargetText}" Executed="onLoadTargetText_Executed" CanExecute="onLoadTargetText_CanExectue"></CommandBinding>
+        <CommandBinding Command="{StaticResource SaveFile}" Executed="onSaveFile_Executed" CanExecute="onSaveFile_CanExectue"></CommandBinding>
+        <CommandBinding Command="{StaticResource CloseFile}" Executed="onCloseFile_Executed" ></CommandBinding>
+        <CommandBinding Command="{StaticResource Help}" Executed="onHelp_Executed" ></CommandBinding>
+    </Window.CommandBindings>
     <DockPanel>
         <ToolBar DockPanel.Dock="Top" Background="#FFC1CBD6">
-            <Button Content="打开文件" />
-            <Button x:Name="button" Content="保存文件" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="75"/>
-            <Button Content="帮助" />
+            <Button Content="打开文件" Command="{StaticResource LoadTargetText}"/>
+            <Button x:Name="button" Content="保存文件" Command="{StaticResource SaveFile}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="75"/>
+            <Button Content="退出" Command="{StaticResource CloseFile}"/>
+            <Button Content="帮助" Command="{StaticResource Help}"/>
         </ToolBar>
-        <StackPanel DockPanel.Dock="Left" Width="132.8" Margin="1">
+        <StackPanel DockPanel.Dock="Left" Width="157" Margin="1,1.4,1,0.8">
             <DockPanel DockPanel.Dock="Top">
                 <Label Content="正则表达式" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
-                <TextBox Text=""></TextBox>
+                <TextBox Text="{Binding Pattern,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Label Content="替换内容" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
                 <TextBox Text=""></TextBox>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Label Content="选择编码" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
+                <ComboBox ItemsSource="{Binding Encodings}" 
+                      SelectedItem="{Binding CurrentEncoding}" 
+                      DisplayMemberPath="EncodingName" />
             </DockPanel>
             <DockPanel Height="50">
                 <Button x:Name="button1" Content="查找" Width="58.4" Height="27.24"/>
@@ -29,6 +48,6 @@
             </DockPanel>
 
         </StackPanel>
-        <TextBox ></TextBox>
+        <TextBox  x:Name="text1"    Text="{Binding TargetText,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
     </DockPanel>
 </Window>
