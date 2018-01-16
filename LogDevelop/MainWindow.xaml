@@ -7,11 +7,28 @@
         mc:Ignorable="d"
         Title="文本分析软件" Height="350" Width="525">
     <DockPanel>
-        <ToolBar DockPanel.Dock="Top">
+        <ToolBar DockPanel.Dock="Top" Background="#FFC1CBD6">
             <Button Content="打开文件" />
             <Button x:Name="button" Content="保存文件" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="75"/>
-
+            <Button Content="帮助" />
         </ToolBar>
-        <ListBox x:Name="listBox" />
+        <StackPanel DockPanel.Dock="Left" Width="132.8" Margin="1">
+            <DockPanel DockPanel.Dock="Top">
+                <Label Content="正则表达式" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
+                <TextBox Text=""></TextBox>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <Label Content="替换内容" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
+                <TextBox Text=""></TextBox>
+            </DockPanel>
+            <DockPanel Height="50">
+                <Button x:Name="button1" Content="查找" Width="58.4" Height="27.24"/>
+            </DockPanel>
+            <DockPanel Height="40">
+                <Button x:Name="button2" Content="替换" Width="58.4" Height="27.24"/>
+            </DockPanel>
+
+        </StackPanel>
+        <TextBox ></TextBox>
     </DockPanel>
 </Window>
