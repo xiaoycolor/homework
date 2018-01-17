@@ -11,12 +11,17 @@
         <RoutedCommand x:Key="SaveFile" />
         <RoutedCommand x:Key="CloseFile" />
         <RoutedCommand x:Key="Help" />
+        <RoutedCommand x:Key="GetMatches" />
+        <RoutedCommand x:Key="StartReplace" />
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource LoadTargetText}" Executed="onLoadTargetText_Executed" CanExecute="onLoadTargetText_CanExectue"></CommandBinding>
         <CommandBinding Command="{StaticResource SaveFile}" Executed="onSaveFile_Executed" CanExecute="onSaveFile_CanExectue"></CommandBinding>
         <CommandBinding Command="{StaticResource CloseFile}" Executed="onCloseFile_Executed" ></CommandBinding>
         <CommandBinding Command="{StaticResource Help}" Executed="onHelp_Executed" ></CommandBinding>
+        <CommandBinding Command="{StaticResource GetMatches}" Executed="onGetMatches_Executed" CanExecute="onGetMatches_CanExectue"></CommandBinding>
+        <CommandBinding Command="{StaticResource StartReplace}" Executed="onStartReplace_Executed" CanExecute="onStartReplace_CanExectue"></CommandBinding>
+
     </Window.CommandBindings>
     <DockPanel>
         <ToolBar DockPanel.Dock="Top" Background="#FFC1CBD6">
@@ -26,13 +31,14 @@
             <Button Content="帮助" Command="{StaticResource Help}"/>
         </ToolBar>
         <StackPanel DockPanel.Dock="Left" Width="157" Margin="1,1.4,1,0.8">
+            
             <DockPanel DockPanel.Dock="Top">
                 <Label Content="正则表达式" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
                 <TextBox Text="{Binding Pattern,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Label Content="替换内容" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
-                <TextBox Text=""></TextBox>
+                <TextBox Text="{Binding ReplaceContent,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <Label Content="选择编码" DockPanel.Dock="Left" Width="60" Background="#FFE5D8D8" FontSize="10"></Label>
@@ -41,11 +47,16 @@
                       DisplayMemberPath="EncodingName" />
             </DockPanel>
             <DockPanel Height="50">
-                <Button x:Name="button1" Content="查找" Width="58.4" Height="27.24"/>
+                <Button x:Name="button1" Content="查找" Command="{StaticResource GetMatches}" Width="58.4" Height="27.24"/>
             </DockPanel>
             <DockPanel Height="40">
-                <Button x:Name="button2" Content="替换" Width="58.4" Height="27.24"/>
+                <Button x:Name="button2" Content="替换" Command="{StaticResource StartReplace}" Width="58.4" Height="27.24"/>
             </DockPanel>
+            
+            <DockPanel DockPanel.Dock="Bottom" Height="62" Margin="0,0,-0.2,0">
+                <TextBox Text="{Binding CollectedText,Mode=OneWay}" IsReadOnly="True" AcceptsReturn="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
+            </DockPanel>
+            
 
         </StackPanel>
         <TextBox  x:Name="text1"    Text="{Binding TargetText,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>

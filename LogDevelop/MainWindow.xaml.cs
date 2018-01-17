@@ -108,6 +108,40 @@ namespace LogDevelop
         {
             MessageBoxResult result = MessageBox.Show("需要什么帮助", "帮助", MessageBoxButton.OKCancel);
         }
+
+        private void onGetMatches_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                _Model.GetMatchs();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void onGetMatches_CanExectue(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = _Model != null && _Model.CanStartMatch;
+        }
+
+        private void onStartReplace_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            try
+            {
+                _Model.Replace();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void onStartReplace_CanExectue(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = _Model != null && _Model.CanStartReplace;
+        }
     }
    
 
