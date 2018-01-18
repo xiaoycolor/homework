@@ -113,6 +113,10 @@ namespace LogDevelop
         {
             throw new NotImplementedException();
         }
-        
+
+
+        ///xml应用
+     
+
     }
 }
