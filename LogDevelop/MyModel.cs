@@ -1,6 +1,8 @@
-﻿using System;
+﻿using datasource;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Linq;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,6 +16,24 @@ namespace LogDevelop
 {
     class MyModel : INotifyPropertyChanged
     {
+        string message="";
+        //linq to sql
+        public const string ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=lesson01;Integrated Security=true;";
+        public MyModel()
+        {
+            DataContext = new DataClasses1DataContext(ConnectionString);
+            foreach(lesson ad in DataContext.lesson)
+            {
+                message = ad.content;
+            }
+        }
+        public string returnmessage() { return message; }
+        public DataClasses1DataContext DataContext { get; }
+        public Table<lesson> lessons
+        {
+            get { return DataContext.lesson; }
+        }
+
         //正则表达式
         public string Pattern { get { return _Pattern; } set { if (_Pattern == value) return; _Pattern = value; OnPropertyChanged(nameof(Pattern)); } }
         private string _Pattern;

@@ -120,7 +120,8 @@ namespace LogDevelop
 
         private void onHelp_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("有什么不明白私聊我啊", "帮助", MessageBoxButton.OKCancel);
+             MessageBoxResult result = MessageBox.Show(_Model.returnmessage(), "帮助", MessageBoxButton.OKCancel);
+
         }
 
         private void onGetMatches_Executed(object sender, ExecutedRoutedEventArgs e)
